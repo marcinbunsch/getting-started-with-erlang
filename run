@@ -1,0 +1,21 @@
+#!/bin/bash
+
+run_tut() {
+  erl -compile $1 && erl -noshell -s $1 test -s init stop
+}
+
+if [ $1 = "all" ]; then
+  for file in `ls *.erl | cut -d '.' -f 1`; do
+    echo "$file ->"
+    run_tut $file
+  done
+elif [ -z $1 ]; then
+  echo "Usage: ./run <tut name>"
+else
+  if [ -f $1.erl ]; then
+    echo "$1 ->"
+    run_tut $1
+  else
+    echo "File $1.erl not found"
+  fi
+fi
