@@ -1,16 +1,17 @@
 #!/bin/bash
 
 run_tut() {
-  erl -compile $1 && erl -noshell -s $1 test -s init stop
+  local name=`echo "$1" | sed -e 's/src\///g'`
+  erlc $name.erl && erl -noshell -s $name test -s init stop
 }
 
-if [ $1 = "all" ]; then
+if [ -z $1 ]; then
+  echo "Usage: ./run <tut name>"
+elif [ $1 = "all" ]; then
   for file in `ls *.erl | cut -d '.' -f 1`; do
     echo "$file ->"
     run_tut $file
   done
-elif [ -z $1 ]; then
-  echo "Usage: ./run <tut name>"
 else
   if [ -f $1.erl ]; then
     echo "$1 ->"
@@ -19,3 +20,5 @@ else
     echo "File $1.erl not found"
   fi
 fi
+
+rm -rf *.beam

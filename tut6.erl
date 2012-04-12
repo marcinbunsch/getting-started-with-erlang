@@ -2,10 +2,6 @@
 -export ([format_temps/1, run/0]).
 -include_lib("eunit/include/eunit.hrl").
 
-run() ->
-  format_temps([{moscow, {c, -10}}, {cape_town, {f, 70}},
-  {stockholm, {c, -4}}, {paris, {f, 28}}, {london, {f, 36}}]).
-
 format_temps([]) ->
   ok;
 format_temps([City | Rest]) ->
@@ -19,3 +15,8 @@ convert_to_celsius({ Name, { f, Temp }}) ->
 
 print_temp({ Name, {c,Temp} }) ->
   io:format("~-15w ~w c~n", [Name, Temp]).
+
+% Tests
+
+convert_to_celsius_test() ->
+  { "Rio", { c, 30 }} = convert_to_celsius({ "Rio", { c, 30 }}).

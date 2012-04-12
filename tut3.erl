@@ -8,3 +8,8 @@ convert(X, inch) ->
 convert(X, centimeter) ->
   X * 2.54.
 
+% Test
+
+convert_test() ->
+  1.0  = convert(2.54, inch),
+  2.54 = convert(1, centimeter).
