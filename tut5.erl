@@ -1,5 +1,5 @@
 -module (tut5).
--export ([list_length/1, run/0]).
+-export ([list_length/1]).
 -include_lib("eunit/include/eunit.hrl").
 
 list_length([]) ->

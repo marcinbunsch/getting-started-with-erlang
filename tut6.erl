@@ -1,5 +1,5 @@
 -module (tut6).
--export ([format_temps/1, run/0]).
+-export ([format_temps/1]).
 -include_lib("eunit/include/eunit.hrl").
 
 format_temps([]) ->
