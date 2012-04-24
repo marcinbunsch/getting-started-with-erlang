@@ -7,11 +7,14 @@ month_length(Year, Month) ->
   %% Years divisible by 100 are not leap (except the 400 rule above)
   %% Years divisible by 4 are leap (except the 100 rule above)
   Leap = if
-     trunc(Year / 400) * 400 == Year ->
+     % trunc(Year / 400) * 400 == Year ->
+     Year rem 400 == 0 ->
        leap;
-     trunc(Year / 100) * 100 == Year ->
+     % trunc(Year / 100) * 100 == Year ->
+     Year rem 100 == 0 ->
        not_leap;
-     trunc(Year / 4) * 4 == Year ->
+     % trunc(Year / 4) * 4 == Year ->
+     Year rem 4 == 0 ->
        leap;
      true ->
        not_leap
