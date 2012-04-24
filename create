@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "module($1).
+
+-include_lib(\"eunit/include/eunit.hrl\").
+
+" > $1.erl
+
+

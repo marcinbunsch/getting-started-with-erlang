@@ -1,6 +1,6 @@
 -module(tut15).
 
--export([start/0, ping/2, pong/0]).
+-export([test/0, ping/2, pong/0]).
 
 ping(0, Pong_PID) ->
     Pong_PID ! finished,
@@ -24,6 +24,6 @@ pong() ->
             pong()
     end.
 
-start() ->
+test() ->
     Pong_PID = spawn(tut15, pong, []),
     spawn(tut15, ping, [3, Pong_PID]).
