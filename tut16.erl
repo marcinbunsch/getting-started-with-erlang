@@ -5,14 +5,14 @@
 -export([test/0, ping/1, pong/0]).
 
 ping(0) ->
-    pong ! finished,
+    ponger ! finished,
     io:format("Ping finished~n", []);
 
 ping(N) ->
-    pong ! {ping, self()},
+    ponger ! {doping, self()},
     receive
-        pong ->
-            io:format("Ping received pong~n", [])
+        dopong ->
+            io:format("Ping received dopong~n", [])
     end,
     ping(N - 1).
 
@@ -20,14 +20,14 @@ pong() ->
     receive
         finished ->
             io:format("Pong finished~n", []);
-        {ping, Ping_PID} ->
-            io:format("Pong received ping~n", []),
-            Ping_PID ! pong,
+        {doping, Ping_PID} ->
+            io:format("Pong received doping~n", []),
+            Ping_PID ! dopong,
             pong()
     end.
 
 
 test() ->
-  register(pong, spawn(tut16, pong, [])),
+  register(ponger, spawn(tut16, pong, [])),
   spawn(tut16, ping, [3]).
 
